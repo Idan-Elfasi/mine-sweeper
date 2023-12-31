@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mine Sweeper</title>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<h1>hii</h1>
+<body onload="oninit()" >
+    <button class="smile" onclick="restartGame()">😄</button>
+    <div class="life">
+     <span class="life1">🥑</span>
+     <span class="life2">🥑</span>
+     <span class="life3">🥑</span>   
+    </div>
+    <div>
+        <button onclick="setLevel(this)">Peth-Tikva</button>
+        <button onclick="setLevel(this)">Tel-Aviv</button>
+        <button  onclick="setLevel (this)">New-York</button>
+    </div>
+    <div class="board-container"></div>
+    <script src="js/utils.js"></script>
+    <script src="js/Mine-Sweeper.js"></script>
+    <script src="js/game-functions.js"></script>
+
+</body>
+
+</html>
