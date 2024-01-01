@@ -8,7 +8,7 @@
     <title>Mine Sweeper</title>
     <link rel="stylesheet" href="css/app.css">
 </head>
-<h1>hii</h1>
+<h1>Mine sweeper special edition 💎</h1>
 <body onload="oninit()" >
     <button class="smile" onclick="restartGame()">😄</button>
     <div class="life">
@@ -16,11 +16,18 @@
      <span class="life2">🥑</span>
      <span class="life3">🥑</span>   
     </div>
-    <div>
+    <div class="hint">
+      Hints:
+      <button onclick="hintTime()">💡</button>  
+    <button onclick="hintTime()">💡</button>  
+    <button onclick="hintTime()">💡</button> 
+</div> 
+    <div class="levels">
         <button onclick="setLevel(this)">Peth-Tikva</button>
         <button onclick="setLevel(this)">Tel-Aviv</button>
         <button  onclick="setLevel (this)">New-York</button>
     </div>
+    <h5>mines left:<span></span></h5>
     <div class="board-container"></div>
     <script src="js/utils.js"></script>
     <script src="js/Mine-Sweeper.js"></script>

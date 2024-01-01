@@ -2,7 +2,7 @@
 
 const LOSE = '😢 Lose'
 const NORMAL = '😄 Normal'
-const WIN = '🙂 Win!'
+const WIN = '🥳 Win!'
 const Flag = '🚩'
 const Mine = '🧨'
 // const One='1️⃣'
@@ -11,6 +11,8 @@ const Mine = '🧨'
 // const Four='4️⃣'
 const press = '🔒'
 const EMPTY = ''
+const LIFE='🥑'
+const HINT='💡'
 
 var gBoard
  var gLives=3
@@ -18,7 +20,7 @@ var gBoard
 
 const gLevel = {
     SIZE: 4,
-    MINES: 2
+    MINES: 4
 }
 
 
@@ -37,6 +39,8 @@ function oninit() {
     gGame.markedCount = 0
     gGame.shownCount=0
     gLives =3
+    const elh5 = document.querySelector('h5 span')
+    elh5.innerText = `${gLevel.MINES}`
 }
 
 function bulidBoard() {
