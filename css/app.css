@@ -24,7 +24,7 @@ table {
     body {
         background-color:gray;
         text-align: center;
-        color: lightgray;
+        color: rgb(211, 211, 211);
     }
 .life{
 /* margin-right: 300px; */
@@ -35,4 +35,31 @@ padding-right: 800px;
 .hint{
     padding-right: 800px;
     padding-top: 70px;
+}
+.markSafe{
+    background-color: red;
+}
+
+.botDark{
+background-color:gold;
+text-align: center;
+color: black;
+/* border-radius: 150px; */
+}
+.Dark{
+    padding-left: 800px;
+padding-top: 50px;
+}
+/* .mega{
+
+} */
+.Manuelly{
+margin-left: 900px;
+border-radius:400px ;
+background-color: lightcoral;
+}
+.Text{
+    margin-left: 900px;
+border-radius:400px ;
+background-color: lightcoral;
 }

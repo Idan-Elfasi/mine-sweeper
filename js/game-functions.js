@@ -1,8 +1,19 @@
 'use strict'
 var gmine = 0
+var isMineRend=false
 var gmine=gLevel.MINES
 var gfirstClick = true
 var gcountRendMine=0
+ var gLoction=
+{
+    i:0,
+    j:0
+}
+var gi=0
+var gj=0
+var gModemines=false
+var gnewMines=gLevel.MINES
+
 
 function setMinesNegsCount(board, rowIdx, colIdx) {
     var count = 0
@@ -11,7 +22,7 @@ function setMinesNegsCount(board, rowIdx, colIdx) {
         if (i < 0 || i >= board.length) continue
         for (var j = colIdx - 1; j <= colIdx + 1; j++) {
             if (i === rowIdx && j === colIdx) continue
-            if (j < 0 || j >= gBoard[0].length) continue
+            if (j < 0 || j >= board[0].length) continue
 
             var currCell = board[i][j]
             if (currCell.isMine) {
@@ -24,30 +35,47 @@ function setMinesNegsCount(board, rowIdx, colIdx) {
 }
 
 function onCellClicked(elCell, i, j) {
+    if(gModemines){
+        if(gnewMines>0){
+            board[i][j].isMine =true
+            console.log( 'new mine: '+board[i][j].isMine)
+              gnewMines--
+           const  elModePos=document.querySelector(' .Text')
+           elModePos.innerText= `mines left to replace: ${gnewMines} `
+        }
+        else {gModemines=false
+            gGame.isOn=true
+            renderBoard(board, '.board-container')
+            gfirstClick=false
+        }
+    }
+
     if (gGame.isOn) {
+        
         if(elCell.innerText===Flag)return
         // if(elCell.innerText===Mine||elCell.innerText||elCell.innerText===EMPTY)return
         if (gfirstClick) {
-            if (gBoard[i][j].isMine) {
+            if (board[i][j].isMine) {
                 //           //update model:
-                var mine = getRandomMine(gBoard)
-                gBoard[mine.i][mine.j].isMine = true
-                gBoard[i][j].isMine = false
+                var mine = getRandomMine(board)
+                board[mine.i][mine.j].isMine = true
+                board[i][j].isMine = false
 
-                renderBoard(gBoard, '.board-container')
+                renderBoard(board, '.board-container')
                 // console.log(gBoard[i][j].minesAroundCount)
-                if (gBoard[i][j].minesAroundCount === 0) {
+                if (board[i][j].minesAroundCount === 0) {
                     renderCell({ i, j }, EMPTY)
                 }
-                else renderCell({ i, j }, gBoard[i][j].minesAroundCount)
+                else renderCell({ i, j }, board[i][j].minesAroundCount)
 
 
             }
             gfirstClick = false
         }
 
-        if (gBoard[i][j].isMine) {
+        if (board[i][j].isMine) {
             elCell.innerText = Mine
+            isMineRend=true
             gcountRendMine++
             gLevel.MINES--
             const elh5=document.querySelector('h5 span')
@@ -57,19 +85,23 @@ function onCellClicked(elCell, i, j) {
 
 
         }
-        else if (gBoard[i][j].minesAroundCount === 0) {
+        else if (board[i][j].minesAroundCount === 0) {
             elCell.innerText = EMPTY
             revelNeg(i, j)
-            if(!gBoard[i][j].isShown) gBoard[i][j].isShown = true
+            if(!board[i][j].isShown) board[i][j].isShown = true
             
         }
         else {
-            elCell.innerText = gBoard[i][j].minesAroundCount
+            elCell.innerText = board[i][j].minesAroundCount
             
-             if(!gBoard[i][j].isShown) gBoard[i][j].isShown = true
+             if(!board[i][j].isShown) board[i][j].isShown = true
         }
+        isMineRend=false
         cehckGameover(elCell)
         CheckWin( i, j)
+       gi=i
+       gj=j
+       console.log('location:'+' '+ gi +' ' +gj)
     }
 }
 
@@ -78,17 +110,17 @@ function onCellClicked(elCell, i, j) {
 function revelNeg(rowIdx, colIdx) {
 
     for (var x = rowIdx - 1; x <= rowIdx + 1; x++) {
-        if (x < 0 || x >= gBoard.length) continue
+        if (x < 0 || x >= board.length) continue
         for (var y = colIdx - 1; y <= colIdx + 1; y++) {
             if (x === rowIdx && y === colIdx) continue
-            if (y < 0 || y >= gBoard[0].length) continue
-            if (gBoard[x][y].isMarked) continue
-            if (gBoard[x][y].isMine) continue
+            if (y < 0 || y >= board[0].length) continue
+            if (board[x][y].isMarked) continue
+            if (board[x][y].isMine) continue
             const negCell = document.querySelector(`.cell-${x}-${y}`)
-            negCell.innerText = (gBoard[x][y].minesAroundCount === 0) ? EMPTY : gBoard[x][y].minesAroundCount
-          if(!gBoard[x][y].isShown){
+            negCell.innerText = (board[x][y].minesAroundCount === 0) ? EMPTY : board[x][y].minesAroundCount
+          if(!board[x][y].isShown){
             gGame.shownCount++
-              gBoard[x][y].isShown=true
+              board[x][y].isShown=true
           }
         }
     }
@@ -114,30 +146,26 @@ function setLevel(elBtn) {
 }
 
 function onCellMarked(elCell, x, y) {
+    
     if (gGame.isOn) {
         if(elCell.innerText===Flag){
 elCell.innerText=press
         }
-else if(elCell.innerText===Mine||elCell.innerText||elCell.innerText===EMPTY) {
-return
-}
-
-   else{
+else if(elCell.innerText===press){
 
        elCell.innerText = Flag
-       gBoard[x][y].isMarked = true
-       if (gBoard[x][y].isMine) {
+       board[x][y].isMarked = true
+       if (board[x][y].isMine) {
            gLevel.MINES--
        }
                // gGame.markedCount++
-               else{ gBoard[x][y].isShown=false  }
+               else{ board[x][y].isShown=false  }
                const elh5 = document.querySelector('h5 span')
                elh5.innerText = `${gLevel.MINES}`
                cehckGameover(elCell)
                CheckWin( x, y)
    }  
-
- 
+   else return 
     
 }
 }
@@ -157,8 +185,8 @@ function createMines() {
 
     for (var i = 0; i < gLevel.mines; i++) {
         // update model
-        var mine = getRandomMine(gBoard)
-        gBoard[mine.i][mine.j].isMine = true
+        var mine = getRandomMine(board)
+        board[mine.i][mine.j].isMine = true
     }
 }
 
@@ -184,9 +212,11 @@ function getRandomMine(board) {
 }
 
 function restartGame() {
-    oninit()
     const elSmile = document.querySelector('.smile')
     elSmile.innerText = '😄'
+    oninit()
+    
+    // renderBoard(gBoard, '.board-container')
    
 }
 function cehckGameover(elCell) {
@@ -195,11 +225,11 @@ function cehckGameover(elCell) {
     }
     if (gLives === 2) {
         const ellives = document.querySelector('.life .life1')
-        ellives.innerText = ''
+        ellives.style.display='none'
     }
     else if (gLives === 1) {
         const ellives = document.querySelector('.life .life2')
-        ellives.innerText = ''
+        ellives.style.display='none'
     }
 
 
@@ -207,7 +237,7 @@ function cehckGameover(elCell) {
         const elSmile = document.querySelector('.smile')
         elSmile.innerText = '😢'
         const ellives = document.querySelector('.life .life3')
-        ellives.innerText = ''
+        ellives.style.display='none'
         gGame.isOn = false
     }
 
@@ -215,11 +245,11 @@ function cehckGameover(elCell) {
 function CheckWin( i, j) {
     if (gGame.isOn) {
 // console.log(gGame.markedCount)
-        if (gBoard[i][j].isMine  && gBoard[i][j].isMarked && gGame.markedCount !== gmine) {
+        if (board[i][j].isMine  && board[i][j].isMarked && gGame.markedCount !== gmine) {
             gGame.markedCount++
             // console.log(gGame.markedCount)
         }
-        if (!gBoard[i][j].isMine && gBoard[i][j].isShown && gGame.shownCount !== ((gLevel.SIZE) * (gLevel.SIZE) - gmine)) {
+        if (!board[i][j].isMine && board[i][j].isShown && gGame.shownCount !== ((gLevel.SIZE) * (gLevel.SIZE) - gmine)) {
             gGame.shownCount++
         }
         if (gGame.markedCount === gmine && gGame.shownCount === ((gLevel.SIZE) * (gLevel.SIZE) - gGame.markedCount )

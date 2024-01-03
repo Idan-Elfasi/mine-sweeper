@@ -14,8 +14,9 @@ const EMPTY = ''
 const LIFE='🥑'
 const HINT='💡'
 
-var gBoard
+var board
  var gLives=3
+ var gHints=3
 
 
 const gLevel = {
@@ -32,8 +33,8 @@ const gGame = {
 }
 
 function oninit() {
-    gBoard = bulidBoard()
-    renderBoard(gBoard, '.board-container')
+    board = bulidBoard()
+    renderBoard(board, '.board-container')
     gGame.isOn = true
     window.addEventListener("contextmenu", e => e.preventDefault())
     gGame.markedCount = 0
@@ -41,6 +42,7 @@ function oninit() {
     gLives =3
     const elh5 = document.querySelector('h5 span')
     elh5.innerText = `${gLevel.MINES}`
+    gHints=3
 }
 
 function bulidBoard() {
@@ -84,7 +86,7 @@ function renderBoard(mat, selector) {
             
             const className = (mat[i][j].isMine)? 'cell Mine':'cell'
 
-            strHTML += `<td onclick="onCellClicked(this,${i},${j})" oncontextmenu="onCellMarked(this,${i},${j})" class="${className} cell-${i}-${j}">${press}</td>`
+            strHTML += `<td onclick="onCellClicked(this,${i},${j}) " onclick="modeMines(this,${i},${j})" oncontextmenu="onCellMarked(this,${i},${j})" class="${className} cell-${i}-${j}">${press}</td>`
 
             var  countAround=(!mat[i][j].isMine)?setMinesNegsCount(mat,i,j):null
             mat[i][j].minesAroundCount=countAround

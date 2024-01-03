@@ -9,19 +9,32 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <h1>Mine sweeper special edition 💎</h1>
+<div class="Dark">
+    <button class="botDark" onclick="darkMode()">Dark Mode</button>
+</div>
 <body onload="oninit()" >
-    <button class="smile" onclick="restartGame()">😄</button>
+    <div>
+        <button class="smile" onclick="restartGame()">😄</button>
+    </div>
     <div class="life">
      <span class="life1">🥑</span>
      <span class="life2">🥑</span>
      <span class="life3">🥑</span>   
     </div>
+    <BUtton class="Manuelly" onclick="modeMines()">pos-mode 🧨</BUtton>
+    <p class="Text">hii</p>
     <div class="hint">
-      Hints:
-      <button onclick="hintTime()">💡</button>  
-    <button onclick="hintTime()">💡</button>  
-    <button onclick="hintTime()">💡</button> 
+        <button class="Mega" onclick="megaHint()">Mega Hint</button>
+      <button class="hint1" onclick="hintTime()">💡</button>  
+    <button class="hint2" onclick="hintTime()">💡</button>  
+    <button class="hint3" onclick="hintTime()">💡</button> 
+    
 </div> 
+<div>
+    <button class="markSafe" onclick="safeClick()" >Safe Click</button>
+<p class="safeCount"> 3 cliks available</p>
+
+</div>
     <div class="levels">
         <button onclick="setLevel(this)">Peth-Tikva</button>
         <button onclick="setLevel(this)">Tel-Aviv</button>
@@ -32,6 +45,8 @@
     <script src="js/utils.js"></script>
     <script src="js/Mine-Sweeper.js"></script>
     <script src="js/game-functions.js"></script>
+    <script src="js/Bonus.js"></script>
+    
 
 </body>
 
