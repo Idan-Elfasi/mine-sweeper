@@ -88,10 +88,7 @@ function darkMode(){
     elBody.classList.toggle('botDark')
 }
 function megaHint(){
-if(gGame.isOn){
-    isMega=true
-
-}
+isMega=true
 }
 
  function modeMines(){
@@ -108,3 +105,19 @@ if(gGame.isOn){
             console.log(elModePos)
             elModePos.innerText=`mines left to replace: ${gnewMines} `
  }
+
+ function removeMega(location1,location2){
+    
+    for (var x = location1.i; x <= location2.i; x++) {
+            
+        for (var y = location1.j; y <= location2.j; y++) {
+            const negCell = document.querySelector(`.cell-${x}-${y}`)
+            if (board[x][y].isMarked) continue
+            console.log(board[x][y].isShown) 
+            if ((board[x][y].isShown) || isMineRend) continue
+            else negCell.innerText = press
+        }
+
+ }
+}
+ 

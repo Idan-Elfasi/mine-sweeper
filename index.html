@@ -8,21 +8,20 @@
     <title>Mine Sweeper</title>
     <link rel="stylesheet" href="css/app.css">
 </head>
-<h1>Mine sweeper special edition 💎</h1>
+
+<h2>Mine sweeper special edition 💎</h2>
 <div class="Dark">
-    <button class="botDark" onclick="darkMode()">Dark Mode</button>
+    <button class="botDark" onclick="darkMode()">Gold Mode</button>
 </div>
 <body onload="oninit()" >
-    <div>
         <button class="smile" onclick="restartGame()">😄</button>
-    </div>
     <div class="life">
      <span class="life1">🥑</span>
      <span class="life2">🥑</span>
      <span class="life3">🥑</span>   
     </div>
     <BUtton class="Manuelly" onclick="modeMines()">pos-mode 🧨</BUtton>
-    <p class="Text">hii</p>
+    <p class="Text"></p>
     <div class="hint">
         <button class="Mega" onclick="megaHint()">Mega Hint</button>
       <button class="hint1" onclick="hintTime()">💡</button>  
@@ -30,15 +29,15 @@
     <button class="hint3" onclick="hintTime()">💡</button> 
     
 </div> 
-<div>
+<div class="safe">
     <button class="markSafe" onclick="safeClick()" >Safe Click</button>
 <p class="safeCount"> 3 cliks available</p>
 
 </div>
     <div class="levels">
-        <button onclick="setLevel(this)">Peth-Tikva</button>
-        <button onclick="setLevel(this)">Tel-Aviv</button>
-        <button  onclick="setLevel (this)">New-York</button>
+        <button class="levelBot" onclick="setLevel(this)">Peth-Tikva</button>
+        <button class="levelBot" onclick="setLevel(this)">Tel-Aviv</button>
+        <button class="levelBot"  onclick="setLevel (this)">New-York</button>
     </div>
     <h5>mines left:<span></span></h5>
     <div class="board-container"></div>

@@ -44,6 +44,10 @@ function oninit() {
     elh5.innerText = `${gLevel.MINES}`
     gHints=3
 }
+function restart(){
+    
+}
+
 
 function bulidBoard() {
     // var countMine=gLevel.MINES

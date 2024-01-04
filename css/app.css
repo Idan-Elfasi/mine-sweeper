@@ -1,4 +1,4 @@
-h1{
+h2{
     color: aquamarine;
 }
 table {
@@ -34,20 +34,24 @@ padding-right: 800px;
 }
 .hint{
     padding-right: 800px;
-    padding-top: 70px;
+    padding-top: 30px;
 }
 .markSafe{
     background-color: red;
+    border-radius:400px ;
 }
+
+
 
 .botDark{
 background-color:gold;
 text-align: center;
 color: black;
+border-radius:400px ;
 /* border-radius: 150px; */
 }
 .Dark{
-    padding-left: 800px;
+    padding-left: 900px;
 padding-top: 50px;
 }
 /* .mega{
@@ -61,5 +65,17 @@ background-color: lightcoral;
 .Text{
     margin-left: 900px;
 border-radius:400px ;
-background-color: lightcoral;
+/* background-color: lightcoral; */
+}
+.Mega{
+    background-color: blueviolet;
+    color: azure;
+    border-color: aquamarine;
+    border-radius:400px ;
+}
+.levelBot{
+    background-color:yellow;
+    color: green;
+    border-color: aquamarine;
+    border-radius:400px ;
 }
