@@ -43,6 +43,13 @@ function oninit() {
     const elh5 = document.querySelector('h5 span')
     elh5.innerText = `${gLevel.MINES}`
     gHints=3
+    // const ellives1 = document.querySelector('.life span')
+        // ellives1.style.display = 'block'
+        // const ellives2 = document.querySelector('.life .life2')
+        // ellives2.style.display = 'block'
+        // const ellives3 = document.querySelector('.life .life3')
+        // ellives3.style.display = 'block'
+
 }
 function restart(){
     

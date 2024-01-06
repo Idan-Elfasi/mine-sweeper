@@ -7,6 +7,9 @@ var gcountRendMine = 0
 var gleftTop = { i: 0, j: 0 }
 var grightBottom = { i: 0, j: 0 }
 var gCountclickArea = 0
+var gLastrender=[]
+var  glastrenders=[]
+var gMines=[]
 
 var gLoction =
 {
@@ -107,8 +110,17 @@ if(gCountclickArea===2)return
                 // console.log(gBoard[i][j].minesAroundCount)
                 if (board[i][j].minesAroundCount === 0) {
                     renderCell({ i, j }, EMPTY)
+                    gLastrender.push(EMPTY)
+                    glocationLastRend.push({i:i,j:j})
+                    
                 }
-                else renderCell({ i, j }, board[i][j].minesAroundCount)
+                else{
+                    renderCell({ i, j }, board[i][j].minesAroundCount) 
+                     gLastrender.push(board[i][j].minesAroundCount)
+                     glocationLastRend.push({i:i,j:j})
+                }
+                    
+
 
 
             }
@@ -118,6 +130,8 @@ if(gCountclickArea===2)return
         if (board[i][j].isMine) {
             elCell.innerText = Mine
             renderCell({ i, j }, Mine)
+            gLastrender.push(Mine)
+            glocationLastRend.push({i:i,j:j})
             isMineRend = true
             gcountRendMine++
             gLevel.MINES--
@@ -132,13 +146,18 @@ if(gCountclickArea===2)return
             elCell.innerText = EMPTY
             renderCell({ i, j }, EMPTY)
             revelNeg(i, j)
+            gLastrender.push(EMPTY)
+            glocationLastRend.push({i:i,j:j})
+            
+
             if (!board[i][j].isShown) board[i][j].isShown = true
 
         }
         else {
             elCell.innerText = board[i][j].minesAroundCount
             renderCell({ i, j }, board[i][j].minesAroundCount)
-
+               gLastrender.push(board[i][j].minesAroundCount)
+                glocationLastRend.push({i:i,j:j})
 
             if (!board[i][j].isShown) board[i][j].isShown = true
         }
@@ -165,6 +184,8 @@ function revelNeg(rowIdx, colIdx) {
             const negCell = document.querySelector(`.cell-${x}-${y}`)
             negCell.innerText = (board[x][y].minesAroundCount === 0) ? EMPTY : board[x][y].minesAroundCount
             if (!board[x][y].isShown) {
+                glastrenders.push(negCell.innerText)
+                glocationsLastRenders.push({i:x,j:y})
                 gGame.shownCount++
                 board[x][y].isShown = true
             }
@@ -266,6 +287,15 @@ function restartGame() {
     gGame.shownCount=0
     gLives =3
     gHints=3
+    // const ellives1 = document.querySelector('.life span')
+    //     ellives1.style.display = 'block'
+    //     const ellives2 = document.querySelector('.life .life2')
+    //     ellives2.style.display = 'block'
+    //     const ellives3 = document.querySelector('.life .life3')
+    //     ellives3.style.display = 'block'
+    //     const elh5 = document.querySelector('h5 span')
+    //         elh5.innerText = `${gLevel.MINES}`
+
     oninit()
 
     // renderBoard(gBoard, '.board-container')

@@ -17,9 +17,6 @@ table {
     color: blueviolet;
 
 
-    
-    
-
 }
     body {
         background-color:gray;
@@ -35,13 +32,16 @@ padding-right: 800px;
 .hint{
     padding-right: 800px;
     padding-top: 30px;
+    width: -300px;
 }
 .markSafe{
     background-color: red;
     border-radius:400px ;
 }
 
-
+/* .Game{
+background-color: black;
+} */
 
 .botDark{
 background-color:gold;
@@ -51,19 +51,27 @@ border-radius:400px ;
 /* border-radius: 150px; */
 }
 .Dark{
-    padding-left: 900px;
+    padding-left: 800px;
 padding-top: 50px;
 }
 /* .mega{
 
 } */
+.madbir{
+    /* margin-right: 800px; */
+    /* margin-top: 50px; */
+    /* border-radius:400px ;  */
+    /* width: 120px; */
+    background-color:peru;
+}
 .Manuelly{
-margin-left: 900px;
+margin-left: 700px;
+margin-top: 20px;
 border-radius:400px ;
 background-color: lightcoral;
 }
 .Text{
-    margin-left: 900px;
+    margin-left: 800px;
 border-radius:400px ;
 /* background-color: lightcoral; */
 }
@@ -79,3 +87,15 @@ border-radius:400px ;
     border-color: aquamarine;
     border-radius:400px ;
 }
+.Back{
+    /* margin-left: 900px; */
+    /* margin-top: 50px; */
+    border-radius:400px ; 
+    /* width: 80px; */
+    background-color:turquoise;
+}
+/* .safe{
+    padding-left: 800px;
+padding-top: 50px; 
+} */
+
